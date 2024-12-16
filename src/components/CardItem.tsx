@@ -10,7 +10,7 @@ interface CartItemProps {
 
 export function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemProps) {
   return (
-    <div className="flex items-center justify-between py-4 border-b border-gray-200">
+    <div className="flex items-center k justify-between py-4 border-b border-gray-200">
       {/* Product Details */}
       <div className="flex-1">
         <h3 className="font-bold text-lg text-gray-800">{item.item.name}</h3>
