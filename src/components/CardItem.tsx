@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/interfaces/cartItem";
-import { Minus, Plus, Trash2 } from 'lucide-react';
+import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa"; // Using FontAwesome icons
 
 interface CartItemProps {
   item: CartItem;
@@ -10,46 +10,40 @@ interface CartItemProps {
 
 export function CartItemRow({ item, onUpdateQuantity, onRemove }: CartItemProps) {
   return (
-    <div className="flex items-center k justify-between py-4 border-b border-gray-200">
-      {/* Product Details */}
+    <div className="flex items-center justify-between bg-white rounded-lg shadow-md p-4 mb-4">
+      {/* Product Info */}
       <div className="flex-1">
-        <h3 className="font-bold text-lg text-gray-800">{item.item.name}</h3>
+        <h3 className="font-bold text-lg text-gray-900">{item.item.name}</h3>
         <p className="text-sm text-gray-500">Price: £{item.item.price.toFixed(2)}</p>
       </div>
 
       {/* Quantity Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <Button
-          variant="outline"
-          size="icon"
-          className="h-10 w-10 border-gray-300 text-gray-700 hover:bg-gray-100"
+          className="h-10 w-10 bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-full flex items-center justify-center"
           onClick={() => onUpdateQuantity(item.item.id, -1)}
           disabled={item.quantity <= 1}
           title="Decrease quantity"
         >
-          <Minus className="h-5 w-5" />
+          <FaMinus size={16} />
         </Button>
-        <span className="w-8 text-center font-semibold text-gray-800">{item.quantity}</span>
+        <span className="w-8 text-center font-semibold text-indigo-600">{item.quantity}</span>
         <Button
-          variant="outline"
-          size="icon"
-          className="h-10 w-10 border-gray-300 text-gray-700 hover:bg-gray-100"
+          className="h-10 w-10 bg-indigo-500 text-white hover:bg-indigo-600 rounded-full flex items-center justify-center"
           onClick={() => onUpdateQuantity(item.item.id, 1)}
           title="Increase quantity"
         >
-          <Plus className="h-5 w-5" />
+          <FaPlus size={16} />
         </Button>
       </div>
 
       {/* Remove Button */}
       <Button
-        variant="ghost"
-        size="icon"
-        className="h-10 w-10 text-red-500 hover:text-red-600"
+        className="h-10 w-10 bg-red-100 text-red-500 hover:bg-red-200 rounded-full flex items-center justify-center"
         onClick={() => onRemove(item.item.id)}
         title="Remove item"
       >
-        <Trash2 className="h-5 w-5" />
+        <FaTrashAlt size={16} />
       </Button>
     </div>
   );
